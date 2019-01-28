@@ -4,7 +4,7 @@ import sys
 
 import aiohttp
 
-from poloniex.api import async, sync
+from poloniex.api import asynchronous, sync
 from poloniex.error import PoloniexError
 from poloniex.logger import getLogger
 
@@ -49,11 +49,11 @@ class AsyncApp(Application):
 
         signal.signal(signal.SIGINT, stop_handler)
 
-        self.public = async.PublicApi(session=session)
-        self.push = async.PushApi(session=session)
+        self.public = asynchronous.PublicApi(session=session)
+        self.push = asynchronous.PushApi(session=session)
 
         if self.api_key and self.api_sec:
-            self._trading = async.TradingApi(api_key=self.api_key, api_sec=self.api_sec, session=session)
+            self._trading = asynchronous.TradingApi(api_key=self.api_key, api_sec=self.api_sec, session=session)
 
         def stop_decorator(main, api):
             async def decorator(*args, **kwargs):
